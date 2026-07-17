@@ -198,6 +198,16 @@
   margin: 0;
 }
 
+/* 0b. Base typeface: the scope speaks Satoshi. Everything inherits it —
+      without this rule a no-build page renders in the browser's default
+      serif, since tokens only *define* --antler-font-body and the Astro
+      site applies it in global.css, which plain pages don't load. Set on
+      the scope element itself so any descendant class (.font-accent) or
+      authored rule still overrides via normal inheritance. */
+.antler-scope {
+  font-family: var(--antler-font-body);
+}
+
 /* 1. Browser/host default margins off inside the scope. Without this, UA
       styles (1em above and below every <p>, 0.83em around an <h2>, …) are
       live on a no-build page and wreck the rhythm before any authored rule
