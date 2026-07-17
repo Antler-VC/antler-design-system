@@ -135,6 +135,24 @@
   color: var(--antler-color-text-muted);
 }
 
+/* ---- Media (the default treatment for content images) ----
+   One class, two emergent behaviors, no modifiers:
+   - stacked or standalone (parent height auto): height:100% resolves to
+     auto, so the 16:9 aspect ratio governs — an image can never render as
+     a towering portrait on mobile;
+   - beside text in a stretched flex/grid layout (align-items: stretch,
+     the enabler): the column height is definite, height:100% fills it,
+     and the aspect ratio is ignored (it only applies to auto dimensions).
+     The taller crop is emergent from the text, not a chosen number. */
+.antler-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: var(--antler-aspect-media);
+  border-radius: var(--antler-radius-md);
+}
+
 /* ---- Flow-margin wiring (Lumos-style scoped variable indirection) ----
    Every text style carries its hand-tiered margins from semantic.css in two
    locally-scoped variables; the flow layer below applies them. Same trick as

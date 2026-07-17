@@ -330,6 +330,15 @@
   --antler-radius-md: var(--_antler-radius-md); /* default — cards, panels, images */
   --antler-radius-full: var(--_antler-radius-full); /* pills, avatars, icon buttons */
 
+  /* ---- Media ----
+     The default aspect ratio for content images. Applied via .antler-media
+     (or the aspect-media utility): 16:9 whenever the layout leaves the
+     image's height auto (stacked/standalone), automatically overridden
+     when a stretched side-by-side layout defines the height — aspect-ratio
+     only bites on auto dimensions. Other ratios: add a token when a page
+     genuinely needs one, never inline a number. */
+  --antler-aspect-media: 16 / 9;
+
   /* ---- Layout ---- */
   --antler-width-site: var(--_antler-width-site); /* max content width */
 }
