@@ -12,8 +12,8 @@ repo and flow through a release.
 Link the two files, version-pinned, via jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Antler-VC/antler-design-system@2.0.0/css/tokens.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Antler-VC/antler-design-system@2.0.0/css/text-styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Antler-VC/antler-design-system@1.0.0/css/tokens.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Antler-VC/antler-design-system@1.0.0/css/text-styles.css" />
 ```
 
 - **`css/tokens.css`** — the design tokens (custom properties): color roles,
@@ -39,7 +39,7 @@ recipes — is documented in `design.md` in the website repo.
 ## Versioning
 
 Releases are git tags (`v2.0.0`, `v2.1.0`, …). Version-pinned jsDelivr URLs
-are cached permanently — a page built against `@2.0.0` renders identically
+are cached permanently — a page built against `@1.0.0` renders identically
 forever. Never point production pages at `@main`.
 
 ## Smoke test
