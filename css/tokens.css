@@ -95,6 +95,13 @@
      Mirrors the Webflow/Lumos --site--margin fluid value (adopted 2026-07-13). */
   --_antler-space-gutter: clamp(1rem, 0.5714rem + 2.1429vw, 2.5rem); /* 16 -> 40px */
 
+  /* ---- Motion (mirrors the live Lumos site, measured 2026-07-17: hover
+     color fades run .2s with default easing; larger movement ~.35s with a
+     strong ease-out curve) ---- */
+  --_antler-duration-fast: 0.2s;
+  --_antler-duration-slow: 0.35s;
+  --_antler-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+
   /* ---- Radii (deliberately minimal: xsmall, small, default, pill) ---- */
   --_antler-radius-xs: 0.25rem;
   --_antler-radius-sm: 0.5rem;
@@ -311,6 +318,21 @@
      --antler-text-{style}-margin-bottom / -margin-top, hand-tiered from the
      spacing scale. The old single --antler-space-text-flow dial is gone —
      one value cannot express the tiers.) */
+
+  /* ---- Motion ----
+     fast = hover/focus color and opacity fades (the site's dominant
+     pattern; browser-default easing is correct there). slow + ease-out =
+     anything that actually moves or reveals. transition-colors is the
+     ready-made shorthand for interactive elements:
+       transition: var(--antler-transition-colors);
+     An instant hover swap is a bug — see the Motion section of design.md. */
+  --antler-duration-fast: var(--_antler-duration-fast);
+  --antler-duration-slow: var(--_antler-duration-slow);
+  --antler-ease-out: var(--_antler-ease-out);
+  --antler-transition-colors: color var(--_antler-duration-fast),
+    background-color var(--_antler-duration-fast),
+    border-color var(--_antler-duration-fast),
+    opacity var(--_antler-duration-fast);
 
   /* ---- Radii (four only) ---- */
   --antler-radius-xs: var(--_antler-radius-xs); /* buttons */
