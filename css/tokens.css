@@ -263,16 +263,6 @@
   --antler-text-small-letter-spacing: 0em;
   --antler-text-small-margin-bottom: var(--_antler-space-4);
   --antler-text-small-margin-top: var(--_antler-space-4);
-  /* Eyebrow: the short label above a heading. Renders like small text — its
-     identity is spacing: it carries NO bottom margin of its own, and the
-     heading below keeps its default large top margin (space-7), which is
-     what provides the eyebrow→heading separation. */
-  --antler-text-eyebrow: var(--_antler-size-small);
-  --antler-text-eyebrow-line-height: 1.5;
-  --antler-text-eyebrow-letter-spacing: 0em;
-  --antler-text-eyebrow-margin-bottom: 0px;
-  --antler-text-eyebrow-margin-top: var(--_antler-space-4);
-
   /* ---- Typography: standalone line-heights ---- */
   --antler-leading-tight: 1.1;
   --antler-leading-snug: 1.3;

@@ -125,16 +125,6 @@
   letter-spacing: var(--antler-text-small-letter-spacing);
 }
 
-/* Eyebrow: the short label above a heading. Same size as small text — what
-   makes it an eyebrow is its spacing: zero bottom margin of its own; the
-   separation to the heading below is the heading's default space-7 top
-   margin. Declared intent: only this class gets the eyebrow treatment. */
-.text-eyebrow {
-  font-size: var(--antler-text-eyebrow);
-  line-height: var(--antler-text-eyebrow-line-height);
-  letter-spacing: var(--antler-text-eyebrow-letter-spacing);
-}
-
 /* ---- Color utility (parity with the Tailwind `text-text-muted` utility) ----
    The one color class this file ships. Muted text is the only color that
    generated markup applies via a class in practice (labels, captions, sub
@@ -163,8 +153,6 @@
 .text-large { --antler-text-flow-bottom: var(--antler-text-large-margin-bottom); --antler-text-flow-top: var(--antler-text-large-margin-top); }
 .text-main { --antler-text-flow-bottom: var(--antler-text-main-margin-bottom); --antler-text-flow-top: var(--antler-text-main-margin-top); }
 .text-small { --antler-text-flow-bottom: var(--antler-text-small-margin-bottom); --antler-text-flow-top: var(--antler-text-small-margin-top); }
-.text-eyebrow { --antler-text-flow-bottom: var(--antler-text-eyebrow-margin-bottom); --antler-text-flow-top: var(--antler-text-eyebrow-margin-top); }
-
 /* ==========================================================================
    TEXT FLOW — automatic vertical rhythm
    ==========================================================================
@@ -293,9 +281,6 @@
   ) {
   margin-bottom: var(--antler-text-flow-composition, var(--antler-space-5));
 }
-
-/* (Eyebrow needs no pair rule: it carries zero bottom margin via its tier,
-   and the heading's own space-7 top margin provides the separation.) */
 
 /* Site-markup parity: the site's opt-in class reads the same tier variable —
    markup copied from .astro components renders identically here. Redundant
