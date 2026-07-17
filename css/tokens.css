@@ -1,0 +1,363 @@
+/* ==========================================================================
+   Antler design tokens — PRIMITIVES (private layer)
+   ==========================================================================
+   Raw brand values only. The `--_antler-` prefix (leading underscore) marks
+   these as internal: they may ONLY be referenced from semantic.css. Nothing
+   else — no component, no Tailwind mapping, no AI-generated page — may use
+   them directly. Consume the public API in semantic.css instead.
+
+   This file is plain, standalone CSS with zero build dependencies. It is
+   destined for the Antler brand asset repo (served via CDN, version-pinned);
+   keep it free of Tailwind/Astro/PostCSS syntax.
+   ========================================================================== */
+
+:root {
+  /* ---- Color palette ---- */
+  --_antler-beige: #e1d7ce;
+  --_antler-black: #1c1a1a;
+  --_antler-white: #ffffff;
+  --_antler-green: #132e31;
+  --_antler-mint: #baded8;
+  --_antler-teal: #297c85;
+  --_antler-red: #ed4746;
+  --_antler-coral: #f96d6d;
+  --_antler-red-deep: #c9102f;
+  --_antler-maroon: #46061d;
+
+  /* ---- Tones (section backgrounds & support colors) ----
+     dark-900/dark-800 and light-100/light-200 are the two section
+     backgrounds per theme; dark-500 is a support tone (borders on dark,
+     muted text on light). Bigger number = darker in both ramps. */
+  --_antler-dark-900: #0c1f21;
+  --_antler-dark-800: #112629;
+  --_antler-dark-500: #2f4f52;
+  --_antler-light-100: #f9f7f5;
+  --_antler-light-200: #f0ebe6;
+
+  /* ---- Font stacks ---- */
+  --_antler-font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --_antler-font-nib-pro: "Nib Pro", ui-serif, Georgia, serif;
+
+  /* ---- Font weights ---- */
+  --_antler-weight-300: 300;
+  --_antler-weight-400: 400;
+  --_antler-weight-500: 500;
+
+  /* ---- Fluid type scale (linear clamp: 320px -> 1440px viewport) ----
+     Mirrors the Webflow (Lumos) fluid type configuration 1:1 (adopted
+     2026-07-13): same min/max per style AND the same linear slope across
+     the full 320-1440 range, so mid-range sizes match the live site too.
+     h6 and text-large are intentionally identical, as in Webflow. */
+  --_antler-size-display: clamp(2rem, 1.2857rem + 3.5714vw, 4.5rem); /* 32 -> 72px */
+  --_antler-size-h1: clamp(2rem, 1.5714rem + 2.1429vw, 3.5rem); /* 32 -> 56px */
+  --_antler-size-h2: clamp(1.65rem, 1.2643rem + 1.9286vw, 3rem); /* 26.4 -> 48px */
+  --_antler-size-h3: clamp(1.5rem, 1.2143rem + 1.4286vw, 2.5rem); /* 24 -> 40px */
+  --_antler-size-h4: clamp(1.5rem, 1.3571rem + 0.7143vw, 2rem); /* 24 -> 32px */
+  --_antler-size-h5: clamp(1.25rem, 1.1786rem + 0.3571vw, 1.5rem); /* 20 -> 24px */
+  --_antler-size-h6: clamp(1rem, 0.9671rem + 0.1643vw, 1.115rem); /* 16 -> 17.8px */
+  /* Body ramp raised one slot from the Webflow original (2026-07-16):
+     main is 16->18 (18px desktop, 16px accessible floor on mobile), small is
+     16 flat — 14px was judged too small to be accessible — and large/xlarge
+     step up to keep the ladder distinct. xlarge is the hero-standfirst size
+     (under an h1). Deliberate departure from Webflow. */
+  --_antler-size-xlarge: clamp(1.25rem, 1.2143rem + 0.1786vw, 1.375rem); /* 20 -> 22px */
+  --_antler-size-large: clamp(1.125rem, 1.0893rem + 0.1786vw, 1.25rem); /* 18 -> 20px */
+  --_antler-size-main: clamp(1rem, 0.9643rem + 0.1786vw, 1.125rem); /* 16 -> 18px */
+  --_antler-size-small: 1rem; /* 16px */
+
+  /* ---- Fluid spacing scale (linear clamp: 320px -> 1440px viewport) ----
+     Mirrors the Webflow (Lumos) "Spacing" variable collection 1:1 (adopted
+     2026-07-13): same names (space/1 ... space/8.5), same min/max, same
+     linear slope — so any value measured on the live site maps to exactly
+     one token. */
+  --_antler-space-1: clamp(0.375rem, 0.3393rem + 0.1786vw, 0.5rem); /* 6 -> 8px */
+  --_antler-space-2: clamp(0.625rem, 0.5893rem + 0.1786vw, 0.75rem); /* 10 -> 12px */
+  --_antler-space-3: clamp(0.875rem, 0.8393rem + 0.1786vw, 1rem); /* 14 -> 16px */
+  --_antler-space-3-5: clamp(0.875rem, 0.7679rem + 0.5357vw, 1.25rem); /* 14 -> 20px */
+  --_antler-space-4: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem); /* 16 -> 24px */
+  --_antler-space-5: clamp(1.5rem, 1.3571rem + 0.7143vw, 2rem); /* 24 -> 32px */
+  --_antler-space-6: clamp(1.75rem, 1.5357rem + 1.0714vw, 2.5rem); /* 28 -> 40px */
+  --_antler-space-7: clamp(2rem, 1.7143rem + 1.4286vw, 3rem); /* 32 -> 48px */
+  --_antler-space-8: clamp(2.25rem, 1.75rem + 2.5vw, 4rem); /* 36 -> 64px */
+  --_antler-space-8-5: clamp(2.5rem, 1.9286rem + 2.8571vw, 4.5rem); /* 40 -> 72px */
+
+  /* ---- Section spacing (Webflow "section-space" group, mirrored 1:1) ----
+     page-top is the only REVERSED curve on the site: 160px on mobile
+     shrinking to 148px at desktop (nav offset for first sections). */
+  --_antler-space-section-small: clamp(2rem, 1.7143rem + 1.4286vw, 3rem); /* 32 -> 48px */
+  --_antler-space-section-main: clamp(3rem, 2.7143rem + 1.4286vw, 4rem); /* 48 -> 64px */
+  --_antler-space-section-large: clamp(4rem, 3.3571rem + 3.2143vw, 6.25rem); /* 64 -> 100px */
+  --_antler-space-section-page-top: clamp(9.25rem, 10.2143rem - 1.0714vw, 10rem); /* 160 -> 148px */
+  --_antler-space-section-page-top-large: clamp(10rem, 9.1429rem + 4.2857vw, 13rem); /* 160 -> 208px */
+  --_antler-space-section-page-top-x-large: clamp(10rem, 8.2857rem + 8.5714vw, 16rem); /* 160 -> 256px */
+
+  /* ---- Site gutter (horizontal padding between content and viewport edge) ----
+     Mirrors the Webflow/Lumos --site--margin fluid value (adopted 2026-07-13). */
+  --_antler-space-gutter: clamp(1rem, 0.5714rem + 2.1429vw, 2.5rem); /* 16 -> 40px */
+
+  /* ---- Radii (deliberately minimal: xsmall, small, default, pill) ---- */
+  --_antler-radius-xs: 0.25rem;
+  --_antler-radius-sm: 0.5rem;
+  --_antler-radius-md: 1rem;
+  --_antler-radius-full: 9999px;
+
+  /* ---- Layout ----
+     The site box includes the gutter padding, so the box cap is the live
+     site's 1440px CONTENT cap plus the gutter's 40px max on each side —
+     content = 1440px on large screens, matching Webflow exactly. */
+  --_antler-width-site: 95rem; /* 1520px box = 1440px content + 2 x 40px gutter */
+}
+
+/* ==========================================================================
+   Antler design tokens — SEMANTIC (public API)
+   ==========================================================================
+   This is the ONLY layer consumers may reference — the Tailwind theme mapping
+   in the site's global.css, component scoped styles, the visual builder, and
+   AI-generated pages all speak this vocabulary and nothing else. Every value here either
+   references a primitive from primitives.css or is a unitless/relative value
+   that IS the design decision (line-heights, flow spacing).
+
+   Color roles default to the DARK theme and are overridden per theme by the
+   `.dark` / `.light` classes below (set on <html>). Palette tokens are
+   theme-stable. Note: `--antler-color-red` is deliberately NOT exposed —
+   Antler Red is reserved for primary CTAs; use `--antler-color-cta`.
+
+   This file is plain, standalone CSS with zero build dependencies. It is
+   destined for the Antler brand asset repo (served via CDN, version-pinned);
+   keep it free of Tailwind/Astro/PostCSS syntax.
+   ========================================================================== */
+
+:root {
+  /* ---- Color roles (theme-aware; defaults = dark theme) ---- */
+  --antler-color-bg-1: var(--_antler-dark-900); /* default section background */
+  --antler-color-bg-2: var(--_antler-dark-800); /* alternate section background */
+  --antler-color-surface: var(--_antler-green); /* raised surface (cards, panels) — contrasts with both backgrounds */
+  --antler-color-text: var(--_antler-white); /* primary text */
+  /* Muted text is the text color at 80% alpha — no separate hue, so it stays
+     harmonious with primary text on any background, in any theme. */
+  --antler-color-text-muted: color-mix(
+    in srgb,
+    var(--antler-color-text) 80%,
+    transparent
+  );
+  --antler-color-border: var(--_antler-dark-500); /* hairlines, input borders */
+  --antler-color-accent: var(--_antler-mint); /* highlights, focus rings */
+  --antler-color-success: var(--_antler-mint);
+  --antler-color-warning: var(--_antler-coral);
+  --antler-color-error: var(--_antler-red);
+
+  /* ---- CTA (Antler Red — primary calls to action ONLY) ---- */
+  --antler-color-cta: var(--_antler-red);
+  --antler-color-cta-hover: var(--_antler-red-deep);
+  --antler-color-cta-text: var(--_antler-white);
+
+  /* ---- Text selection ---- */
+  --antler-color-selection-bg: var(--_antler-mint);
+  --antler-color-selection-text: var(--_antler-black);
+
+  /* ---- Decorative palette (theme-stable brand colors) ----
+     For decorative surfaces: card tones, category tags, illustrations.
+     Never for CTAs and never as a substitute for the theme-aware roles
+     above. Pair with the stated foreground (e.g. black text on mint). */
+  --antler-color-beige: var(--_antler-beige);
+  --antler-color-black: var(--_antler-black);
+  --antler-color-white: var(--_antler-white);
+  --antler-color-green: var(--_antler-green);
+  --antler-color-mint: var(--_antler-mint);
+  --antler-color-teal: var(--_antler-teal);
+  --antler-color-coral: var(--_antler-coral);
+  --antler-color-maroon: var(--_antler-maroon);
+
+  /* ---- Typography: families ---- */
+  --antler-font-body: var(--_antler-font-satoshi); /* default for everything */
+  --antler-font-accent: var(--_antler-font-nib-pro); /* accent words only */
+
+  /* ---- Typography: weights (500 is the maximum — no semibold/bold) ---- */
+  --antler-weight-light: var(--_antler-weight-300);
+  --antler-weight-regular: var(--_antler-weight-400);
+  --antler-weight-medium: var(--_antler-weight-500);
+
+  /* ---- Typography: text styles (size + line-height + weight + letter-spacing
+     + margins per style) ----
+     Letter-spacing mirrors Webflow's two-value system: the large heading
+     styles (display–h3) are tight (-0.03em); everything else is 0, set
+     explicitly so a style nested inside a tight heading resets rather than
+     inheriting the negative tracking. There is no standalone tracking knob —
+     letter-spacing only exists inside a text style.
+
+     Margins are hand-assigned steps from the spacing scale, mirroring the
+     Lumos tiers our Webflow site ships (display→6, h1–h3→5, h4–body→4 below;
+     headings→7, body→4 above). They are NOT derived from the font size — the
+     tiering encodes the optical judgment that large type needs proportionally
+     less trailing space and body copy proportionally more. Adjacent margins
+     collapse in block flow, so paragraph→heading resolves to the heading's
+     large top margin and heading→paragraph to the heading's smaller bottom.
+     Consumed via the text-style classes / `margin-bottom-text`; never write
+     margins by hand. */
+  --antler-text-display: var(--_antler-size-display);
+  --antler-text-display-line-height: 1.05;
+  --antler-text-display-weight: var(--_antler-weight-400);
+  --antler-text-display-letter-spacing: -0.03em;
+  --antler-text-display-margin-bottom: var(--_antler-space-6);
+  --antler-text-display-margin-top: var(--_antler-space-7);
+  --antler-text-h1: var(--_antler-size-h1);
+  --antler-text-h1-line-height: 1.1;
+  --antler-text-h1-weight: var(--_antler-weight-500);
+  --antler-text-h1-letter-spacing: -0.03em;
+  --antler-text-h1-margin-bottom: var(--_antler-space-5);
+  --antler-text-h1-margin-top: var(--_antler-space-7);
+  --antler-text-h2: var(--_antler-size-h2);
+  --antler-text-h2-line-height: 1.15;
+  --antler-text-h2-weight: var(--_antler-weight-500);
+  --antler-text-h2-letter-spacing: -0.03em;
+  --antler-text-h2-margin-bottom: var(--_antler-space-5);
+  --antler-text-h2-margin-top: var(--_antler-space-7);
+  --antler-text-h3: var(--_antler-size-h3);
+  --antler-text-h3-line-height: 1.2;
+  --antler-text-h3-weight: var(--_antler-weight-500);
+  --antler-text-h3-letter-spacing: -0.03em;
+  --antler-text-h3-margin-bottom: var(--_antler-space-5);
+  --antler-text-h3-margin-top: var(--_antler-space-7);
+  --antler-text-h4: var(--_antler-size-h4);
+  --antler-text-h4-line-height: 1.25;
+  --antler-text-h4-weight: var(--_antler-weight-500);
+  --antler-text-h4-letter-spacing: 0em;
+  --antler-text-h4-margin-bottom: var(--_antler-space-4);
+  --antler-text-h4-margin-top: var(--_antler-space-7);
+  --antler-text-h5: var(--_antler-size-h5);
+  --antler-text-h5-line-height: 1.3;
+  --antler-text-h5-weight: var(--_antler-weight-500);
+  --antler-text-h5-letter-spacing: 0em;
+  --antler-text-h5-margin-bottom: var(--_antler-space-4);
+  --antler-text-h5-margin-top: var(--_antler-space-7);
+  --antler-text-h6: var(--_antler-size-h6);
+  --antler-text-h6-line-height: 1.4;
+  --antler-text-h6-weight: var(--_antler-weight-500);
+  --antler-text-h6-letter-spacing: 0em;
+  --antler-text-h6-margin-bottom: var(--_antler-space-4);
+  --antler-text-h6-margin-top: var(--_antler-space-7);
+  --antler-text-xlarge: var(--_antler-size-xlarge);
+  --antler-text-xlarge-line-height: 1.5;
+  --antler-text-xlarge-letter-spacing: 0em;
+  --antler-text-xlarge-margin-bottom: var(--_antler-space-4);
+  --antler-text-xlarge-margin-top: var(--_antler-space-4);
+  --antler-text-large: var(--_antler-size-large);
+  --antler-text-large-line-height: 1.5;
+  --antler-text-large-letter-spacing: 0em;
+  --antler-text-large-margin-bottom: var(--_antler-space-4);
+  --antler-text-large-margin-top: var(--_antler-space-4);
+  --antler-text-main: var(--_antler-size-main);
+  --antler-text-main-line-height: 1.6;
+  --antler-text-main-letter-spacing: 0em;
+  --antler-text-main-margin-bottom: var(--_antler-space-4);
+  --antler-text-main-margin-top: var(--_antler-space-4);
+  --antler-text-small: var(--_antler-size-small);
+  --antler-text-small-line-height: 1.5;
+  --antler-text-small-letter-spacing: 0em;
+  --antler-text-small-margin-bottom: var(--_antler-space-4);
+  --antler-text-small-margin-top: var(--_antler-space-4);
+  /* Eyebrow: the short label above a heading. Renders like small text — its
+     identity is spacing: it carries NO bottom margin of its own, and the
+     heading below keeps its default large top margin (space-7), which is
+     what provides the eyebrow→heading separation. */
+  --antler-text-eyebrow: var(--_antler-size-small);
+  --antler-text-eyebrow-line-height: 1.5;
+  --antler-text-eyebrow-letter-spacing: 0em;
+  --antler-text-eyebrow-margin-bottom: 0px;
+  --antler-text-eyebrow-margin-top: var(--_antler-space-4);
+
+  /* ---- Typography: standalone line-heights ---- */
+  --antler-leading-tight: 1.1;
+  --antler-leading-snug: 1.3;
+  --antler-leading-normal: 1.5;
+  --antler-leading-relaxed: 1.75;
+
+  /* ---- Spacing scale (fluid; mirrors the Webflow "space" collection) ---- */
+  --antler-space-1: var(--_antler-space-1);
+  --antler-space-2: var(--_antler-space-2);
+  --antler-space-3: var(--_antler-space-3);
+  --antler-space-3-5: var(--_antler-space-3-5);
+  --antler-space-4: var(--_antler-space-4);
+  --antler-space-5: var(--_antler-space-5);
+  --antler-space-6: var(--_antler-space-6);
+  --antler-space-7: var(--_antler-space-7);
+  --antler-space-8: var(--_antler-space-8);
+  --antler-space-8-5: var(--_antler-space-8-5);
+
+  /* ---- Section spacing (mirrors the Webflow "section-space" group) ---- */
+  --antler-space-section-small: var(--_antler-space-section-small);
+  --antler-space-section-main: var(--_antler-space-section-main); /* default */
+  --antler-space-section-large: var(--_antler-space-section-large);
+  /* Page top variants — TOP padding for a page's first section, offsetting it
+     from the navbar. Top edge only, never py. page-top REVERSES (160 -> 148px). */
+  --antler-space-section-page-top: var(--_antler-space-section-page-top);
+  --antler-space-section-page-top-large: var(--_antler-space-section-page-top-large);
+  --antler-space-section-page-top-x-large: var(--_antler-space-section-page-top-x-large);
+
+  /* ---- Site gutter (horizontal padding between content and viewport edge) ---- */
+  --antler-space-gutter: var(--_antler-space-gutter);
+
+  /* ---- Button padding (fixed — buttons don't scale with viewport) ---- */
+  --antler-space-btn-y: 0.875rem; /* 14px */
+  --antler-space-btn-x: 1.125rem; /* 18px */
+
+  /* ---- Button weight (fixed — button labels are always regular, 400) ----
+     Never medium, in any variant or theme. Buttons consume this token
+     instead of a generic weight token so the rule is a value in the
+     system, not a convention to remember. */
+  --antler-weight-btn: var(--_antler-weight-400);
+
+  /* (Text flow spacing lives with the text styles above: each style carries
+     --antler-text-{style}-margin-bottom / -margin-top, hand-tiered from the
+     spacing scale. The old single --antler-space-text-flow dial is gone —
+     one value cannot express the tiers.) */
+
+  /* ---- Radii (four only) ---- */
+  --antler-radius-xs: var(--_antler-radius-xs); /* buttons */
+  --antler-radius-sm: var(--_antler-radius-sm); /* tags, inputs */
+  --antler-radius-md: var(--_antler-radius-md); /* default — cards, panels, images */
+  --antler-radius-full: var(--_antler-radius-full); /* pills, avatars, icon buttons */
+
+  /* ---- Layout ---- */
+  --antler-width-site: var(--_antler-width-site); /* max content width */
+}
+
+/* ==========================================================================
+   Theme overrides — swap the color roles, nothing else.
+   The theme class lives on <html>; nested theme scopes (e.g. a light card
+   inside a dark page) also work since these are just cascaded custom props.
+   ========================================================================== */
+
+.dark {
+  --antler-color-bg-1: var(--_antler-dark-900);
+  --antler-color-bg-2: var(--_antler-dark-800);
+  --antler-color-surface: var(--_antler-green);
+  --antler-color-text: var(--_antler-white);
+  --antler-color-text-muted: color-mix(
+    in srgb,
+    var(--antler-color-text) 80%,
+    transparent
+  );
+  --antler-color-border: var(--_antler-dark-500);
+  --antler-color-accent: var(--_antler-mint);
+  --antler-color-success: var(--_antler-mint);
+  --antler-color-warning: var(--_antler-coral);
+  --antler-color-error: var(--_antler-red);
+}
+
+.light {
+  --antler-color-bg-1: var(--_antler-light-100);
+  --antler-color-bg-2: var(--_antler-light-200);
+  --antler-color-surface: var(--_antler-white);
+  --antler-color-text: var(--_antler-black);
+  --antler-color-text-muted: color-mix(
+    in srgb,
+    var(--antler-color-text) 80%,
+    transparent
+  );
+  --antler-color-border: var(--_antler-beige);
+  --antler-color-accent: var(--_antler-teal);
+  --antler-color-success: var(--_antler-teal);
+  --antler-color-warning: var(--_antler-red);
+  --antler-color-error: var(--_antler-red-deep);
+}

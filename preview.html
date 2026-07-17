@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+  Antler design tokens — no-build smoke test.
+  Open this file directly in a browser (or serve the folder statically).
+  It links ONLY tokens.css + text-styles.css — no Tailwind, no build step —
+  and exercises the public --antler-* API exactly the way the visual builder
+  and standalone AI-generated pages will. If typography, color roles, theming
+  and the CTA render correctly here, the token layer is intact.
+-->
+<html lang="en" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Antler tokens — standalone preview</title>
+    <!-- Satoshi is loaded here for preview fidelity only; font loading is the
+         consuming site's responsibility, not part of the token layer. -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,1&display=swap"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/text-styles.css" />
+    <style>
+      /* Page scaffolding only — every design value below is a token. */
+      body {
+        margin: 0;
+        background: var(--antler-color-bg-1);
+        color: var(--antler-color-text);
+        font-family: var(--antler-font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      .inner {
+        max-width: var(--antler-width-site);
+        margin-inline: auto;
+        padding-inline: var(--antler-space-gutter);
+        padding-block: var(--antler-space-section-main);
+      }
+      .muted {
+        color: var(--antler-color-text-muted);
+      }
+      /* No text margins anywhere in this file: the flow base layer in
+         text-styles.css spaces every heading/paragraph automatically.
+         If the type ramp below renders cramped or gappy, that layer broke. */
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--antler-space-4);
+        align-items: center;
+        margin-block-start: var(--antler-space-5);
+      }
+      .swatch {
+        width: var(--antler-space-8-5);
+        height: var(--antler-space-8-5);
+        border-radius: var(--antler-radius-sm);
+        border: 1px solid var(--antler-color-border);
+      }
+      .card {
+        background: var(--antler-color-surface);
+        border: 1px solid var(--antler-color-border);
+        border-radius: var(--antler-radius-md);
+        padding: var(--antler-space-5);
+        margin-block-start: var(--antler-space-5);
+      }
+      .cta {
+        display: inline-block;
+        background: var(--antler-color-cta);
+        color: var(--antler-color-cta-text);
+        border-radius: var(--antler-radius-sm);
+        padding: var(--antler-space-3) var(--antler-space-4);
+        font-weight: var(--antler-weight-medium);
+        text-decoration: none;
+      }
+      .cta:hover {
+        background: var(--antler-color-cta-hover);
+      }
+      .pill {
+        border: 1px solid var(--antler-color-border);
+        border-radius: var(--antler-radius-full);
+        padding: var(--antler-space-3);
+        background: var(--antler-color-surface);
+        color: var(--antler-color-text);
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body class="antler-scope">
+    <main class="inner">
+      <button class="pill" onclick="document.documentElement.classList.toggle('light');document.documentElement.classList.toggle('dark')">
+        Toggle theme
+      </button>
+
+      <div style="margin-block-start: var(--antler-space-7)">
+        <h1 class="text-display">Display</h1>
+        <h2 class="text-h1">Heading 1</h2>
+        <h2 class="text-h2">Heading 2</h2>
+        <h3 class="text-h3">Heading 3</h3>
+        <h4 class="text-h4">Heading 4</h4>
+        <h5 class="text-h5">Heading 5</h5>
+        <p class="text-xlarge">Extra large body copy for hero standfirsts.</p>
+        <p class="text-large">Large body copy for comfortable reading.</p>
+        <p class="text-main">
+          Main body copy. Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit. Suspendisse varius enim in eros elementum tristique.
+        </p>
+        <p class="text-small muted">Small supporting text and captions.</p>
+      </div>
+
+      <div class="card">
+        <h3 class="text-h4">A surface card</h3>
+        <p class="text-main muted">
+          Theme-aware roles: surface, border, muted text — toggle the theme
+          above and everything follows.
+        </p>
+        <a class="cta" href="#">Apply now</a>
+      </div>
+
+      <div class="row">
+        <div class="swatch" style="background: var(--antler-color-mint)"></div>
+        <div class="swatch" style="background: var(--antler-color-teal)"></div>
+        <div class="swatch" style="background: var(--antler-color-green)"></div>
+        <div class="swatch" style="background: var(--antler-color-beige)"></div>
+        <div class="swatch" style="background: var(--antler-color-maroon)"></div>
+        <div class="swatch" style="background: var(--antler-color-coral)"></div>
+        <span class="text-small muted">Decorative palette</span>
+      </div>
+    </main>
+  </body>
+</html>

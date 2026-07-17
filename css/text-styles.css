@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Antler design tokens — TEXT STYLES (plain-CSS consumers only)
+   ==========================================================================
+   Ready-made text-style classes for consumers that use the tokens WITHOUT
+   Tailwind: the visual builder and standalone AI-generated pages. Import it
+   alongside tokens.css:
+
+     <link rel="stylesheet" href=".../tokens.css">
+     <link rel="stylesheet" href=".../text-styles.css">
+
+   The Astro site must NOT load this file. Tailwind already generates these
+   exact classes (same names, same tokens) from the theme mapping in
+   global.css; loading both would duplicate the class system.
+
+   Class names match the Tailwind utilities one-to-one, and each rule
+   composes only public `--antler-*` semantic tokens — no raw values, no
+   primitives. Adding or changing a text style touches three places: the
+   tokens in semantic.css, the theme mapping in the site's global.css, and
+   the class here. A change that touches one without the others is
+   incomplete.
+
+   Besides the classes, this file ships the TEXT FLOW base layer (bottom of
+   file): the standalone equivalent of the site's reset + rhythm rules, so
+   generated pages are spaced correctly with no author choices.
+
+   This file is plain, standalone CSS with zero build dependencies. It is
+   destined for the Antler brand asset repo (served via CDN, version-pinned);
+   keep it free of Tailwind/Astro/PostCSS syntax.
+   ========================================================================== */
+
+/* ---- Headings (size + line-height + weight + letter-spacing) ---- */
+
+.text-display {
+  font-size: var(--antler-text-display);
+  line-height: var(--antler-text-display-line-height);
+  font-weight: var(--antler-text-display-weight);
+  letter-spacing: var(--antler-text-display-letter-spacing);
+}
+
+.text-h1 {
+  font-size: var(--antler-text-h1);
+  line-height: var(--antler-text-h1-line-height);
+  font-weight: var(--antler-text-h1-weight);
+  letter-spacing: var(--antler-text-h1-letter-spacing);
+}
+
+.text-h2 {
+  font-size: var(--antler-text-h2);
+  line-height: var(--antler-text-h2-line-height);
+  font-weight: var(--antler-text-h2-weight);
+  letter-spacing: var(--antler-text-h2-letter-spacing);
+}
+
+.text-h3 {
+  font-size: var(--antler-text-h3);
+  line-height: var(--antler-text-h3-line-height);
+  font-weight: var(--antler-text-h3-weight);
+  letter-spacing: var(--antler-text-h3-letter-spacing);
+}
+
+.text-h4 {
+  font-size: var(--antler-text-h4);
+  line-height: var(--antler-text-h4-line-height);
+  font-weight: var(--antler-text-h4-weight);
+  letter-spacing: var(--antler-text-h4-letter-spacing);
+}
+
+.text-h5 {
+  font-size: var(--antler-text-h5);
+  line-height: var(--antler-text-h5-line-height);
+  font-weight: var(--antler-text-h5-weight);
+  letter-spacing: var(--antler-text-h5-letter-spacing);
+}
+
+.text-h6 {
+  font-size: var(--antler-text-h6);
+  line-height: var(--antler-text-h6-line-height);
+  font-weight: var(--antler-text-h6-weight);
+  letter-spacing: var(--antler-text-h6-letter-spacing);
+}
+
+/* ---- Accent face (Nib Pro) ----
+   Matches the Tailwind `font-accent` utility plus the site's base rules:
+   defaults to light (300), and inside a heading it is ALWAYS italic light —
+   that pairing is the brand's accent treatment, not an author choice. */
+
+.font-accent {
+  font-family: var(--antler-font-accent);
+  font-weight: var(--antler-weight-light);
+}
+
+:where(h1, h2, h3, h4, h5, h6) :where(.font-accent),
+:where(h1, h2, h3, h4, h5, h6):where(.font-accent) {
+  font-weight: var(--antler-weight-light);
+  font-style: italic;
+}
+
+/* ---- Body copy (size + line-height + letter-spacing) ----
+   No font-weight here on purpose: body copy is regular (400) via the
+   weight-default rule in the flow section below, and these classes must
+   stay weight-free so `.font-accent` (light) still wins when combined —
+   matching the Tailwind utilities, which emit no font-weight either. */
+
+.text-xlarge {
+  font-size: var(--antler-text-xlarge);
+  line-height: var(--antler-text-xlarge-line-height);
+  letter-spacing: var(--antler-text-xlarge-letter-spacing);
+}
+
+.text-large {
+  font-size: var(--antler-text-large);
+  line-height: var(--antler-text-large-line-height);
+  letter-spacing: var(--antler-text-large-letter-spacing);
+}
+
+.text-main {
+  font-size: var(--antler-text-main);
+  line-height: var(--antler-text-main-line-height);
+  letter-spacing: var(--antler-text-main-letter-spacing);
+}
+
+.text-small {
+  font-size: var(--antler-text-small);
+  line-height: var(--antler-text-small-line-height);
+  letter-spacing: var(--antler-text-small-letter-spacing);
+}
+
+/* Eyebrow: the short label above a heading. Same size as small text — what
+   makes it an eyebrow is its spacing: zero bottom margin of its own; the
+   separation to the heading below is the heading's default space-7 top
+   margin. Declared intent: only this class gets the eyebrow treatment. */
+.text-eyebrow {
+  font-size: var(--antler-text-eyebrow);
+  line-height: var(--antler-text-eyebrow-line-height);
+  letter-spacing: var(--antler-text-eyebrow-letter-spacing);
+}
+
+/* ---- Flow-margin wiring (Lumos-style scoped variable indirection) ----
+   Every text style carries its hand-tiered margins from semantic.css in two
+   locally-scoped variables; the flow layer below applies them. Same trick as
+   Lumos' --_text-style---margin-bottom: one rule applies the margin, each
+   style decides its value. Class wiring (specificity 0-1-0) always beats the
+   bare-element defaults in the flow layer (specificity 0), so
+   `<h2 class="text-h4">` gets the h4 tier. */
+.text-display { --antler-text-flow-bottom: var(--antler-text-display-margin-bottom); --antler-text-flow-top: var(--antler-text-display-margin-top); }
+.text-h1 { --antler-text-flow-bottom: var(--antler-text-h1-margin-bottom); --antler-text-flow-top: var(--antler-text-h1-margin-top); }
+.text-h2 { --antler-text-flow-bottom: var(--antler-text-h2-margin-bottom); --antler-text-flow-top: var(--antler-text-h2-margin-top); }
+.text-h3 { --antler-text-flow-bottom: var(--antler-text-h3-margin-bottom); --antler-text-flow-top: var(--antler-text-h3-margin-top); }
+.text-h4 { --antler-text-flow-bottom: var(--antler-text-h4-margin-bottom); --antler-text-flow-top: var(--antler-text-h4-margin-top); }
+.text-h5 { --antler-text-flow-bottom: var(--antler-text-h5-margin-bottom); --antler-text-flow-top: var(--antler-text-h5-margin-top); }
+.text-h6 { --antler-text-flow-bottom: var(--antler-text-h6-margin-bottom); --antler-text-flow-top: var(--antler-text-h6-margin-top); }
+.text-xlarge { --antler-text-flow-bottom: var(--antler-text-xlarge-margin-bottom); --antler-text-flow-top: var(--antler-text-xlarge-margin-top); }
+.text-large { --antler-text-flow-bottom: var(--antler-text-large-margin-bottom); --antler-text-flow-top: var(--antler-text-large-margin-top); }
+.text-main { --antler-text-flow-bottom: var(--antler-text-main-margin-bottom); --antler-text-flow-top: var(--antler-text-main-margin-top); }
+.text-small { --antler-text-flow-bottom: var(--antler-text-small-margin-bottom); --antler-text-flow-top: var(--antler-text-small-margin-top); }
+.text-eyebrow { --antler-text-flow-bottom: var(--antler-text-eyebrow-margin-bottom); --antler-text-flow-top: var(--antler-text-eyebrow-margin-top); }
+
+/* ==========================================================================
+   TEXT FLOW — automatic vertical rhythm
+   ==========================================================================
+   The Astro site gets this from global.css: Tailwind's preflight zeroes the
+   browser's default margins, and the opt-in `margin-bottom-text` class adds
+   the trailing space. A standalone page has neither, so this file ships the
+   equivalent as element rules — automatic rather than opt-in, so generated
+   markup is spaced correctly by construction, with nothing to remember and
+   nothing to choose.
+
+   THE SCOPE CONTRACT: every rule below applies inside `.antler-scope` only.
+   Standalone pages put the class on <body>; embeds into styled host pages
+   (e.g. a Webflow/Lumos page) put it on the embed's wrapper div. Two reasons,
+   both learned from embedding into the live Lumos site: (1) host stylesheets
+   set margins on bare h1/p element selectors (specificity 0-0-1), which
+   beats unscoped :where() rules (0) — the scope class lifts the flow rules
+   to 0-1-0 so the rhythm survives; (2) without the scope, these element
+   rules leak onto the host page's own content (and our text-box trim would
+   double up with Lumos's pseudo-element trim). Forgetting the class fails
+   loudly — no rhythm at all — rather than subtly.
+
+   Inside the scope the element parts stay in `:where()` so everything is a
+   flat 0-1-0: any utility class combo or inline style still overrides.
+   Rules cascade by source order — do not reorder. The Astro site must never
+   load this file: these defaults would fight its opt-in rhythm. */
+
+/* 0. Standalone body reset — UA gives <body> 8px margin. Unscoped on
+      purpose (body is outside the wrapper in embeds; host pages already
+      manage their body). */
+:where(body) {
+  margin: 0;
+}
+
+/* 1. Browser/host default margins off inside the scope. Without this, UA
+      styles (1em above and below every <p>, 0.83em around an <h2>, …) are
+      live on a no-build page and wreck the rhythm before any authored rule
+      applies. */
+.antler-scope :where(h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote) {
+  margin: 0;
+}
+
+/* 2. Cap-height leading trim — identical to the site's base rule, so a gap
+      measured here and a gap measured on antler.co are the same gap.
+      Browsers without `text-box` (e.g. Firefox) fall back gracefully. */
+.antler-scope :where(h1, h2, h3, h4, h5, h6, p, blockquote) {
+  text-box: trim-both cap alphabetic;
+}
+
+/* 2b. Line breaking: headings balance their wrapped lines (no full-width
+      first line with an orphaned word below); body copy avoids single-word
+      last lines. Both are progressive enhancements — unsupported browsers
+      simply wrap normally. */
+.antler-scope :where(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+}
+.antler-scope :where(p, blockquote, li) {
+  text-wrap: pretty;
+}
+
+/* 2c. Weight defaults: body copy is ALWAYS regular (400) by default — the
+      brand never sets paragraphs in medium; a heavier weight on body text
+      is an explicit, per-request exception. Fully inside :where()
+      (specificity 0) so `.font-accent` (light) and any authored class or
+      utility still wins; what this rule stops is a heavier wrapper leaking
+      its weight into body copy through inheritance. */
+:where(.antler-scope p, .antler-scope ul, .antler-scope ol, .antler-scope blockquote, .antler-scope figcaption) {
+  font-weight: var(--antler-weight-regular);
+}
+
+/* Browsers default <strong>/<b> to 700, which we neither load nor allow —
+      cap at medium (500), the brand's maximum weight. Same rule as the
+      site's base layer. */
+:where(.antler-scope strong, .antler-scope b) {
+  font-weight: var(--antler-weight-medium);
+}
+
+/* 3. Bare-element tier defaults: an unclassed <h2> or <p> still gets its
+      style's margins. Fully inside :where() (specificity 0) — these only
+      set custom properties, which no host stylesheet fights over, and they
+      must stay BELOW the .text-* class wiring (0-1-0) so
+      `<h2 class="text-h4">` takes the h4 tier. */
+:where(.antler-scope h1) { --antler-text-flow-bottom: var(--antler-text-h1-margin-bottom); --antler-text-flow-top: var(--antler-text-h1-margin-top); }
+:where(.antler-scope h2) { --antler-text-flow-bottom: var(--antler-text-h2-margin-bottom); --antler-text-flow-top: var(--antler-text-h2-margin-top); }
+:where(.antler-scope h3) { --antler-text-flow-bottom: var(--antler-text-h3-margin-bottom); --antler-text-flow-top: var(--antler-text-h3-margin-top); }
+:where(.antler-scope h4) { --antler-text-flow-bottom: var(--antler-text-h4-margin-bottom); --antler-text-flow-top: var(--antler-text-h4-margin-top); }
+:where(.antler-scope h5) { --antler-text-flow-bottom: var(--antler-text-h5-margin-bottom); --antler-text-flow-top: var(--antler-text-h5-margin-top); }
+:where(.antler-scope h6) { --antler-text-flow-bottom: var(--antler-text-h6-margin-bottom); --antler-text-flow-top: var(--antler-text-h6-margin-top); }
+:where(.antler-scope p, .antler-scope ul, .antler-scope ol, .antler-scope blockquote) { --antler-text-flow-bottom: var(--antler-text-main-margin-bottom); --antler-text-flow-top: var(--antler-text-main-margin-top); }
+
+/* 4. The rhythm itself, Lumos collapse scheme: every text block carries its
+      tier's margin below AND above (headings ride high: space-7 on top,
+      space-5/4 underneath; body copy is space-4 both ways). Adjacent margins
+      collapse in block flow, so the pair resolves itself — paragraph→heading
+      gets the heading's big top margin, heading→paragraph the heading's
+      smaller bottom, paragraph→paragraph body rhythm. First child carries no
+      top margin, last child no bottom (the u-margin-trim equivalent, built
+      in). NOTE: collapse requires block flow — never put a text run directly
+      inside a flex/grid container (both margins apply and gaps double). */
+.antler-scope :where(h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote):where(:not(:last-child)) {
+  margin-bottom: var(--antler-text-flow-bottom, var(--antler-space-4));
+}
+.antler-scope :where(h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote):where(:not(:first-child)) {
+  margin-top: var(--antler-text-flow-top, var(--antler-space-4));
+}
+
+/* 5. Composition grammar: a text block followed by something that is NOT
+      text — a button, CTA row, image, card grid — gets a step gap instead.
+      The space before an action or media block is a composition gap, and the
+      site authors it with scale steps (cards: copy→CTA at space-5; the
+      location hero runs copy→CTAs at space-7). space-5 (24→32px) by default;
+      a container may retune it by setting --antler-text-flow-composition to
+      another STEP (e.g. a hero sets space-7) — a token choice, not an
+      authored margin. */
+.antler-scope :where(h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote):has(
+    + :not(h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote)
+  ) {
+  margin-bottom: var(--antler-text-flow-composition, var(--antler-space-5));
+}
+
+/* (Eyebrow needs no pair rule: it carries zero bottom margin via its tier,
+   and the heading's own space-7 top margin provides the separation.) */
+
+/* Site-markup parity: the site's opt-in class reads the same tier variable —
+   markup copied from .astro components renders identically here. Redundant
+   on this side (the flow rules already apply it) but harmless. */
+.antler-scope :where(.margin-bottom-text) {
+  margin-bottom: var(--antler-text-flow-bottom, var(--antler-space-4));
+}
+.antler-scope :where(.margin-bottom-text):last-child {
+  margin-bottom: 0;
+}
