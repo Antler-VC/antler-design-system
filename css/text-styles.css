@@ -135,6 +135,16 @@
   letter-spacing: var(--antler-text-eyebrow-letter-spacing);
 }
 
+/* ---- Color utility (parity with the Tailwind `text-text-muted` utility) ----
+   The one color class this file ships. Muted text is the only color that
+   generated markup applies via a class in practice (labels, captions, sub
+   copy), and generators reach for the Tailwind spelling out of habit —
+   without this rule that class silently does nothing on a plain-CSS page.
+   Every other color stays var(--antler-color-*) in the page's own CSS. */
+.text-text-muted {
+  color: var(--antler-color-text-muted);
+}
+
 /* ---- Flow-margin wiring (Lumos-style scoped variable indirection) ----
    Every text style carries its hand-tiered margins from semantic.css in two
    locally-scoped variables; the flow layer below applies them. Same trick as
