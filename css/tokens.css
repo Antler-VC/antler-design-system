@@ -144,11 +144,11 @@
     --_antler-green
   ); /* raised surface (cards, panels) — contrasts with both backgrounds */
   --antler-color-text: var(--_antler-white); /* primary text */
-  /* Muted text is the text color at 80% alpha — no separate hue, so it stays
+  /* Muted text is the text color at 70% alpha — no separate hue, so it stays
      harmonious with primary text on any background, in any theme. */
   --antler-color-text-muted: color-mix(
     in srgb,
-    var(--antler-color-text) 80%,
+    var(--antler-color-text) 70%,
     transparent
   );
   --antler-color-border: var(--_antler-dark-500); /* hairlines, input borders */
@@ -371,7 +371,7 @@
   --antler-color-text: var(--_antler-white);
   --antler-color-text-muted: color-mix(
     in srgb,
-    var(--antler-color-text) 80%,
+    var(--antler-color-text) 70%,
     transparent
   );
   --antler-color-border: var(--_antler-dark-500);
@@ -388,7 +388,7 @@
   --antler-color-text: var(--_antler-black);
   --antler-color-text-muted: color-mix(
     in srgb,
-    var(--antler-color-text) 80%,
+    var(--antler-color-text) 70%,
     transparent
   );
   --antler-color-border: var(--_antler-beige);
