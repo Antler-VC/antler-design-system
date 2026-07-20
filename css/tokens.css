@@ -137,8 +137,12 @@
 :root {
   /* ---- Color roles (theme-aware; defaults = dark theme) ---- */
   --antler-color-bg-1: var(--_antler-dark-900); /* default section background */
-  --antler-color-bg-2: var(--_antler-dark-800); /* alternate section background */
-  --antler-color-surface: var(--_antler-green); /* raised surface (cards, panels) — contrasts with both backgrounds */
+  --antler-color-bg-2: var(
+    --_antler-dark-800
+  ); /* alternate section background */
+  --antler-color-surface: var(
+    --_antler-green
+  ); /* raised surface (cards, panels) — contrasts with both backgrounds */
   --antler-color-text: var(--_antler-white); /* primary text */
   /* Muted text is the text color at 80% alpha — no separate hue, so it stays
      harmonious with primary text on any background, in any theme. */
@@ -254,7 +258,9 @@
   --antler-text-large-margin-bottom: var(--_antler-space-4);
   --antler-text-large-margin-top: var(--_antler-space-4);
   --antler-text-main: var(--_antler-size-main);
-  --antler-text-main-line-height: 1.6;
+  /* Body paragraphs default to the leading-normal token (per 2026-07-20
+     decision) — change the leading token, and text-main follows. */
+  --antler-text-main-line-height: var(--antler-leading-normal);
   --antler-text-main-letter-spacing: 0em;
   --antler-text-main-margin-bottom: var(--_antler-space-4);
   --antler-text-main-margin-top: var(--_antler-space-4);
@@ -266,7 +272,7 @@
   /* ---- Typography: standalone line-heights ---- */
   --antler-leading-tight: 1.1;
   --antler-leading-snug: 1.3;
-  --antler-leading-normal: 1.5;
+  --antler-leading-normal: 1.45;
   --antler-leading-relaxed: 1.75;
 
   /* ---- Spacing scale (fluid; mirrors the Webflow "space" collection) ---- */
@@ -288,8 +294,12 @@
   /* Page top variants — TOP padding for a page's first section, offsetting it
      from the navbar. Top edge only, never py. page-top REVERSES (160 -> 148px). */
   --antler-space-section-page-top: var(--_antler-space-section-page-top);
-  --antler-space-section-page-top-large: var(--_antler-space-section-page-top-large);
-  --antler-space-section-page-top-x-large: var(--_antler-space-section-page-top-x-large);
+  --antler-space-section-page-top-large: var(
+    --_antler-space-section-page-top-large
+  );
+  --antler-space-section-page-top-x-large: var(
+    --_antler-space-section-page-top-x-large
+  );
 
   /* ---- Site gutter (horizontal padding between content and viewport edge) ---- */
   --antler-space-gutter: var(--_antler-space-gutter);
@@ -319,7 +329,8 @@
   --antler-duration-fast: var(--_antler-duration-fast);
   --antler-duration-slow: var(--_antler-duration-slow);
   --antler-ease-out: var(--_antler-ease-out);
-  --antler-transition-colors: color var(--_antler-duration-fast),
+  --antler-transition-colors:
+    color var(--_antler-duration-fast),
     background-color var(--_antler-duration-fast),
     border-color var(--_antler-duration-fast),
     opacity var(--_antler-duration-fast);
@@ -327,8 +338,12 @@
   /* ---- Radii (four only) ---- */
   --antler-radius-xs: var(--_antler-radius-xs); /* buttons */
   --antler-radius-sm: var(--_antler-radius-sm); /* tags, inputs */
-  --antler-radius-md: var(--_antler-radius-md); /* default — cards, panels, images */
-  --antler-radius-full: var(--_antler-radius-full); /* pills, avatars, icon buttons */
+  --antler-radius-md: var(
+    --_antler-radius-md
+  ); /* default — cards, panels, images */
+  --antler-radius-full: var(
+    --_antler-radius-full
+  ); /* pills, avatars, icon buttons */
 
   /* ---- Media ----
      The default aspect ratio for content images. Applied via .antler-media
