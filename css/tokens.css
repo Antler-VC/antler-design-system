@@ -183,8 +183,11 @@
   --antler-font-body: var(--_antler-font-satoshi); /* default for everything */
   --antler-font-accent: var(--_antler-font-nib-pro); /* accent words only */
 
-  /* ---- Typography: weights (500 is the maximum — no semibold/bold) ---- */
-  --antler-weight-light: var(--_antler-weight-300);
+  /* ---- Typography: weights (500 is the maximum — no semibold/bold.
+     Satoshi uses 400/500 only; 300 exists solely for the Nib Pro accent,
+     exposed as the purpose-locked accent token below, never as a general
+     "light" weight) ---- */
+  --antler-weight-accent: var(--_antler-weight-300); /* Nib Pro only */
   --antler-weight-regular: var(--_antler-weight-400);
   --antler-weight-medium: var(--_antler-weight-500);
 

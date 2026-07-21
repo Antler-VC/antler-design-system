@@ -81,17 +81,18 @@
 
 /* ---- Accent face (Nib Pro) ----
    Matches the Tailwind `font-accent` utility plus the site's base rules:
-   defaults to light (300), and inside a heading it is ALWAYS italic light —
+   defaults to the accent weight (300 — Nib Pro's own weight, not a general
+   "light"), and inside a heading it is ALWAYS italic at that weight —
    that pairing is the brand's accent treatment, not an author choice. */
 
 .font-accent {
   font-family: var(--antler-font-accent);
-  font-weight: var(--antler-weight-light);
+  font-weight: var(--antler-weight-accent);
 }
 
 :where(h1, h2, h3, h4, h5, h6) :where(.font-accent),
 :where(h1, h2, h3, h4, h5, h6):where(.font-accent) {
-  font-weight: var(--antler-weight-light);
+  font-weight: var(--antler-weight-accent);
   font-style: italic;
 }
 
